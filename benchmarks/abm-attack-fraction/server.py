@@ -27,7 +27,8 @@ class EMODBenchmarkModel(umbridge.Model):
         # returns attack fraction of the model ([0,1]), -0 for out of bounds
         model_output = self.model(parameters, config)[0]
 
-        model_output = [1 - model_output[0]['Susceptible Population']['Data'][-1] ]
+        result = json.loads(model_output[0])
+        model_output = [1 - result['Susceptible Population']['Data'][-1]]
 
         print(model_output)
 

@@ -32,9 +32,17 @@ This is simply the so called forward map that takes an element from the list of 
 :math:`\boldsymbol{\theta} = (\theta_1, \ldots, \theta_n) \in \mathbb{R}^n`, and returns the model output, 
 :math:`\mathbf{F}(\boldsymbol{\theta}) = (F(\boldsymbol{\theta})_1, \ldots, F(\boldsymbol{\theta})_m) \in \mathbb{R}^m`.
 
+For a collection of :math:`d` input vectors, each of dimension :math:`n`, this follows the definition as before:
 
-Gradient of the objective
-=========================
+.. math::
+    
+    \mathbf{F} : \mathbb{R}^{n \times d} \; \longrightarrow \; \mathbb{R}^{m \times d}.
+    
+In practice, both inputs and outputs are expected as lists of lists.
+
+
+Gradient of the objective function
+==================================
 
 The gradient function evaluates the sensitivity of the scalar objective. Using the chain rule:
 

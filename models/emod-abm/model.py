@@ -60,7 +60,7 @@ class EMODForwardModel(umbridge.Model):
             channels = ['New Infections', 'Infected', 'Infectious Population', 'Susceptible Population', 'Symptomatic Population', 'Recovered Population', 'Exposed Population']
             values = [0, 0, 0, 1, 0, 0, 0]
             out_of_bounds = {k:{"Data":[v]} for k,v in zip(channels, values)}
-            return [[out_of_bounds]]
+            return [[json.dumps(out_of_bounds)]]
 
         # update config file
         inf_prd_mean   = 8.0
@@ -97,7 +97,8 @@ class EMODForwardModel(umbridge.Model):
         # remove extra files
         self._cleanup()
 
-        return [[{float(c):inset_chart['Channels'][c] for c in ['New Infections', 'Infected', 'Infectious Population', 'Susceptible Population', 'Symptomatic Population', 'Recovered Population', 'Exposed Population']}]]
+        result = {c: inset_chart['Channels'][c] for c in ['New Infections', 'Infected', 'Infectious Population', 'Susceptible Population', 'Symptomatic Population', 'Recovered Population', 'Exposed Population']}
+        return [[json.dumps(result)]]
 
     def supports_evaluate(self):
         return True    
